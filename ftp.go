@@ -537,12 +537,7 @@ func (r *Response) Read(buf []byte) (int, error) {
 
 // Close implements the io.Closer interface on a FTP data connection.
 func (r *Response) Close() error {
-	err := r.conn.Close()
-	_, _, err2 := r.c.conn.ReadResponse(StatusClosingDataConnection)
-	if err2 != nil {
-		err = err2
-	}
-	return err
+	return r.conn.Close()
 }
 
 // SetDeadline sets the deadlines associated with the connection.
